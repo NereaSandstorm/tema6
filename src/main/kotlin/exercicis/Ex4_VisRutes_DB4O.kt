@@ -17,6 +17,7 @@ import com.db4o.Db4oEmbedded
 import exercicis.EX3_2.PuntGeo
 import exercicis.EX3_2.Ruta
 import util.bd.GestionarRutesBD
+import kotlin.system.exitProcess
 
 class FinestraComplet : JFrame() {
     var llista = arrayListOf<Ruta>()
@@ -76,23 +77,33 @@ class FinestraComplet : JFrame() {
 
         primer.addActionListener {
             // instruccions per a situar-se en la primera ruta, i visualitzar-la
-
+            numActual = 0
+            VisRuta()
         }
         anterior.addActionListener {
             // instruccions per a situar-se en la ruta anterior, i visualitzar-la
+            if (!(numActual <= 0)) {
+                numActual -= 1
 
+            } else {
+                numActual = 0
+            }
+
+            VisRuta()
         }
         seguent.addActionListener {
             // instruccions per a situar-se en la ruta següent, i visualitzar-la
-
+            numActual += 1
+            VisRuta()
         }
         ultim.addActionListener {
             // instruccions per a situar-se en l'últim ruta, i visualitzar-la
-
+            numActual = llista.size-1
+            VisRuta()
         }
         tancar.addActionListener {
             // instruccions per a tancar la BD i el programa
-
+            exitProcess(0)
         }
 
         inicialitzar()
@@ -130,6 +141,30 @@ class FinestraComplet : JFrame() {
 
     fun ActivarBotons() {
         // instruccions per a activar o desactivar els botons de moviment ( setEnabled(Boolean) )
+
+
+        if (numActual == 0) {
+            primer.isEnabled = false
+            anterior.isEnabled = false
+            seguent.isEnabled = true
+            ultim.isEnabled = true
+        } else {
+            primer.isEnabled = true
+            anterior.isEnabled = true
+            seguent.isEnabled = true
+            ultim.isEnabled = true
+        }
+
+        if (numActual == llista.size - 1) {
+            ultim.isEnabled = false
+            seguent.isEnabled = false
+            primer.isEnabled = true
+            anterior.isEnabled = true
+        } else {
+            ultim.isEnabled = true
+            seguent.isEnabled = true
+        }
+
 
     }
 
