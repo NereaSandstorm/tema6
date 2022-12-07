@@ -28,6 +28,7 @@ class FinestraComplet : JFrame() {
     val qNom = JTextField(15)
     val qDesn = JTextField(5)
     val qDesnAcum = JTextField(5)
+    val distancia = JTextField(5)
     val punts = JTable(1, 3)
     val primer = JButton(" << ")
     val anterior = JButton(" < ")
@@ -52,6 +53,9 @@ class FinestraComplet : JFrame() {
         panell1.add(JLabel("Desnivell acumulat:"))
         qDesnAcum.setEditable(false)
         panell1.add(qDesnAcum)
+        panell1.add(JLabel("Distancia:"))
+        distancia.setEditable(false)
+        panell1.add(distancia)
         panell1.add(JLabel("Punts:"))
 
         val panell2 = JPanel(GridLayout(0, 1))
@@ -168,6 +172,21 @@ class FinestraComplet : JFrame() {
 
     }
 
+}
+fun Dist(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+
+    val R = 6378.137 // Radi de la Tierra en km
+    val dLat = rad(lat2 - lat1)
+    val dLong = rad(lon2 - lon1)
+
+    val a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(rad(lat1)) * Math.cos(rad(lat2)) * Math.sin(dLong / 2) * Math.sin(dLong / 2)
+    val c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+    val d = R * c
+    return Math.round(d*100.0)/100.0
+}
+
+fun rad(x: Double): Double {
+    return x * Math.PI / 180
 }
 
 fun main(args: Array<String>) {
