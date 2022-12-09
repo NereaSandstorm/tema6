@@ -139,6 +139,15 @@ class FinestraComplet : JFrame() {
         qNom.text = llista.get(numActual).nom
         qDesn.text= llista.get(numActual).desnivell.toString()
         qDesnAcum.text= llista.get(numActual).desnivellAcumulat.toString()
+
+        var dist: Double = 0.0
+        for (i in 0..llista.get(numActual).llistaDePunts.size - 2) {
+            var punto1 = llista.get(numActual).llistaDePunts[i]
+            var punto2 = llista.get(numActual).llistaDePunts[i + 1]
+
+            dist+= Dist(punto1.coord.latitud, punto1.coord.longitud, punto2.coord.latitud, punto2.coord.longitud)
+        }
+        distancia.text = dist.toString() + " km"
         plenarTaula(llista.get(numActual).llistaDePunts)
         ActivarBotons()
     }
