@@ -2,7 +2,7 @@ package exemples
 
 
 
-import com.db4o.Db4oEmbedded
+//import com.db4o.Db4oEmbedded
 
 import classesEmpleat.Empleat
 import classesEmpleat.Adreca

@@ -139,6 +139,11 @@ class FinestraComplet : JFrame() {
         qNom.text = llista.get(numActual).nom
         qDesn.text= llista.get(numActual).desnivell.toString()
         qDesnAcum.text= llista.get(numActual).desnivellAcumulat.toString()
+        var lat1 = llista.get(numActual).llistaDePunts[0].coord.latitud
+        var long1=  llista.get(numActual).llistaDePunts[0].coord.longitud
+        var lat2 = llista.get(numActual).llistaDePunts[llista.get(numActual).llistaDePunts.size - 1].coord.latitud
+        var long2=llista.get(numActual).llistaDePunts[llista.get(numActual).llistaDePunts.size - 1].coord.longitud
+        distancia.text = Dist(lat1, long1, lat2, long2).toString()
         plenarTaula(llista.get(numActual).llistaDePunts)
         ActivarBotons()
     }
